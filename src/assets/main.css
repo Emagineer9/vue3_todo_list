@@ -3,19 +3,22 @@
 
 body {
   background-color: #eeece6;
+  color: #473e30;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Meiryo UI', sans-serif;
 }
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  place-items: center;
+}
 
-  font-weight: normal;
+main {
+  top: 78px;
+  padding: 0 20px;
 }
 
 header {
   position: fixed;
-  line-height: 1.5;
   max-height: 100vh;
   z-index: 999;
   top: 0;
@@ -44,21 +47,19 @@ a,
   padding: 0 20px;
 }
 
+.flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+
+
 @media (hover: hover) {
   a:hover {
     background-color: #5b7b7033;
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
+@media (min-width: 1024px) {}

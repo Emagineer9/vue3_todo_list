@@ -2,8 +2,9 @@
  * Todoタスク
  */
 export interface TaskItemInterface {
-    id: string | number,
-    tag: Array<string>,
+    id: string,
+    tags: Array<string>,
     text: string,
     status: string,
+    isEdit: Boolean,
 }
