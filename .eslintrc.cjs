@@ -1,6 +1,4 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
-
 module.exports = {
   root: true,
   'extends': [
@@ -13,6 +11,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
+    'max-len': [2, { "code": 80 }],
     "indent": [
       "error",
       2,
@@ -25,6 +24,7 @@ module.exports = {
     "semi-style": ["error", "first"],
     "no-extra-semi": "error",
     "no-unexpected-multiline": "error",
-    "no-unreachable": "error"
+    "no-unreachable": "error",
+    "volar.inlayHints.eventArgumentInInlineHandlers": false
   }
 }

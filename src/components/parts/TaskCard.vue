@@ -12,11 +12,11 @@
 
 <template>
   <div class="task-card">
-    <div class="flex">
-      <div class="status">
+    <div class="flex" style="padding-bottom: 20px;">
+      <div class="status align-items">
         <slot name="status"></slot>
       </div>
-      <div>
+      <div class="text align-items">
         <slot name="text"></slot>
       </div>
     </div>
@@ -42,6 +42,9 @@
 
 .status {
   padding-right: 10px;
-  padding-bottom: 10px;
+}
+.text{
+  width: 100%;
+  padding: 10px;
 }
 </style>
