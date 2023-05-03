@@ -1,36 +1,63 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import type { Ref } from 'vue'
-// import { mdiAccount } from '@mdi/js'
-// import SvgIcon from './parts/SvgIcon.vue'
-// import WelcomeItem from './WelcomeItem.vue'
 import TaskCard from './parts/TaskCard.vue'
+import MultiSelectBox from './parts/MultiSelectBox.vue'
 import type { TaskItemInterface } from '@/interface/TaskItem'
+import type { TagItemInterface } from '@/interface/TagItem'
 
-const taskItems: TaskItemInterface[] = reactive([
+/** データ取得 */
+const allTags: Array<String> = ['aaaa', 'bbbb']
+const allTask = [
   { id: '1', text: '文字1', tags: ['aaaa', 'bbbb'], status: 'A', isEdit: false },
   { id: '2', text: '文字2', tags: [], status: 'B', isEdit: false },
   { id: '3', text: '文字3', tags: [], status: 'A', isEdit: false },
-])
+]
 
+let allTagOptions = reactive(allTags.join().split(',').map((tag) => {
+  const item: TagItemInterface = {
+    name: tag,
+    code: tag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+  }
+  return item
+}))
+
+const createTags = (arr: Array<string>) => {
+  return arr.map((value) => {
+    const selectOptions = allTagOptions.find((option) => option.name === value)
+    if (selectOptions === undefined) {
+      const addTag: TagItemInterface = {
+        name: value,
+        code: value.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      }
+      allTagOptions.push(addTag)
+      return addTag
+    }
+    return selectOptions
+  })
+}
+const taskItems: TaskItemInterface[] = reactive(allTask.map((taskItem) => {
+  const item: TaskItemInterface = {
+    ...taskItem,
+    tags: createTags(taskItem.tags)
+  }
+  return item
+}))
+
+/** クリックイベント */
 let pressTimer: any = null
 
-/** methods */
 const dbClickTaskCard = (index: any) => {
-  console.log('dbClickTaskCard')
   taskItems[index].isEdit = !taskItems[index].isEdit
 }
 
 const startPress = (index: any) => {
   pressTimer = setTimeout(() => {
-    console.log('startPress')
     taskItems[index].isEdit = !taskItems[index].isEdit
   }, 1000)
 }
 
 const endPress = () => {
   if (!pressTimer) return
-  console.log('endPress')
   clearTimeout(pressTimer)
   pressTimer = null
 }
@@ -62,7 +89,17 @@ const endPress = () => {
       </template>
     </template>
     <template #tags>
-      <span v-for="tag in taskItem.tags" class="tag">{{ tag }}</span>
+      <template v-if="taskItem.isEdit">
+        <MultiSelectBox
+          :value="taskItem.tags"
+          :options="allTagOptions"
+          @addTag="allTagOptions.push($event)"
+          @update:value="taskItem.tags = $event"
+        />
+      </template>
+      <template v-else>
+        <span v-for="tag in taskItem.tags" class="tag">{{ tag.name }}</span>
+      </template>
     </template>
   </TaskCard>
 </template>

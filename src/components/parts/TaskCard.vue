@@ -21,9 +21,7 @@
       </div>
     </div>
     <div class="flex">
-      <div>
-        <slot name="tags"></slot>
-      </div>
+      <slot name="tags"></slot>
     </div>
   </div>
 </template>

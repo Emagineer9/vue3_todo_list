@@ -34,6 +34,10 @@ npm run build
 - SVG表示Componentを利用して表示
 https://zenn.dev/junara/articles/467ec7922135b9
 
+## その他ライブラリ
+- マルチセレクトボックス
+npm install vue-multiselect@next
+https://github.com/shentao/vue-multiselect/tree/next
 
 ## 作業時間メモ
 https://github.com/Emagineer9/vue3_todo_list
@@ -41,4 +45,6 @@ https://github.com/Emagineer9/vue3_todo_list
 2023/04/23 16:00～18:30 2.5
 2023/04/23 20:30～21:30 1
 2023/04/24 23:00～24:30 1.5
-2023/04/25 21:00～
+2023/04/25 21:00～0:00  3
+2023/04/26 20:30～21:30
+2023/05/03 21:00～23:00
