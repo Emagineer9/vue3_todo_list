@@ -1,33 +1,33 @@
 <script setup lang="ts">
-// import type { PropType } from 'vue'
-// import type { TaskItemInterface } from '@/interface/TaskItem'
-
-// const props = defineProps({
-//   taskItem: {
-//     type: Object as PropType<TaskItemInterface>,
-//     required: true,
-//   },
-// })
 </script>
 
 <template>
   <div class="task-card">
-    <div class="flex" style="padding-bottom: 20px;">
-      <div class="status align-items">
-        <slot name="status"></slot>
+    <div>
+      <div class="grid-row">
+        <div class="status align-items">
+          <slot name="status"></slot>
+        </div>
+        <div class="text align-items">
+          <slot name="text"></slot>
+        </div>
       </div>
-      <div class="text align-items">
-        <slot name="text"></slot>
+      <div class="grid-row">
+        <div></div>
+        <div><slot name="tags"></slot></div>
+      </div>
+      <div class="text-align-end" style="margin-top: 4px;">
+        <slot name="date"></slot>
       </div>
     </div>
-    <div class="flex">
-      <slot name="tags"></slot>
-    </div>
+    <slot name="button"></slot>
   </div>
 </template>
 
 <style scoped>
 .task-card {
+  display: grid;
+  grid-template-columns: auto 100px;
   padding: 20px 30px;
   border-bottom: solid;
   border-width: 1px;
@@ -38,11 +38,13 @@
   border-bottom: none;
 }
 
-.status {
-  padding-right: 10px;
+.task-card .grid-row {
+  display: grid;
+  grid-template-columns: 40px auto;
+  margin-bottom: 10px;
 }
-.text{
+
+.text {
   width: 100%;
-  padding: 10px;
 }
 </style>

@@ -1,5 +1,6 @@
 @import './reset.css';
 @import './base.css';
+@import url('vue-multiselect/dist/vue-multiselect.css');
 
 body {
   background-color: #eeece6;
@@ -67,8 +68,43 @@ a,
   align-items: center;
 }
 
+.text-align-end {
+  text-align: end;
+}
+
+.multiselect__tag {
+  background: #5b7b70ba !important;
+}
+.multiselect__tag-icon::after {
+  color: #31433c !important;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+input, textarea {
+  outline: none;
+}
+
+.btn {
+  margin: auto;
+  border-radius: 4px;
+  transition: .3s;
+}
+
+.radius-btn {
+  margin: auto;
+  border-radius: 34px;
+  transition: .3s;
+  padding: 4px;
+}
+
 @media (hover: hover) {
   a:hover {
+    background-color: #5b7b7033;
+  }
+  .btn:hover {
     background-color: #5b7b7033;
   }
 }

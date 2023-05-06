@@ -20,7 +20,6 @@ const computedValue = computed({
     return props.value
   },
   set: (value) => {
-    console.log(value)
     emit('update:value', value)
   },
 })
@@ -30,7 +29,6 @@ const addTag = (newVal: string) => {
     name: newVal,
     code: newVal.substring(0, 2) + Math.floor((Math.random() * 10000000))
   }
-  computedValue.value.push(newTag)
   emit('addTag', newTag)
 }
 </script>
@@ -56,12 +54,11 @@ const addTag = (newVal: string) => {
 .multi-select {
   width: 100%;
 }
-
-.multiselect__tag {
-  background: #5b7b70ba !important;
+.multiselect__tags {
+  border: 1px solid #cdc4b9 !important;
 }
-.multiselect__tag-icon::after {
-  color: #31433c !important;
+.multiselect__content-wrapper {
+  border: 1px solid #cdc4b9 !important;
+  border-top: none !important;
 }
 </style>
-<style src="vue-multiselect/dist/vue-multiselect.css"></style>

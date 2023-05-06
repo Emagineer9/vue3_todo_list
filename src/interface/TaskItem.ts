@@ -7,6 +7,8 @@ export interface TaskItemInterface {
     id: string,
     tags: Array<TagItemInterface>,
     text: string,
-    status: string,
+    status: number,
+    createDate: string,
+    updateDate: string,
     isEdit: Boolean,
 }
