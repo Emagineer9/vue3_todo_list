@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, onBeforeUpdate } from 'vue'
+import { reactive, onBeforeUpdate, ref } from 'vue'
 import { mdiCheckboxBlankOutline, mdiPencilBoxOutline, mdiCheckboxMarked } from '@mdi/js'
 import SvgIcon from '@/components/parts/SvgIcon.vue'
 import type { StatusItemInterface } from '@/interface/StatusItem'
@@ -26,12 +26,10 @@ const getStatus = (value: number) => {
   }
   return status
 }
-const getColor = (value: number) => {
-  const status = getStatus(value)
-  return status.color
-}
 
-let selectStatus: StatusItemInterface = getStatus(props.value)
+let selectStatus: StatusItemInterface = reactive(getStatus(props.value))
+let color = ref(selectStatus.color)
+
 const getClass = () => {
   return 'check-box ' + selectStatus.name
 }
@@ -42,6 +40,7 @@ const onClick = () => {
 
 onBeforeUpdate(() => {
   selectStatus = getStatus(props.value)
+  color.value = selectStatus.color
 })
 </script>
 
@@ -57,25 +56,10 @@ onBeforeUpdate(() => {
   transition: .3s;
   padding: 2px;
 }
-/* 直接切り替えだと上手くいかなかった；； */
-.check-box.ready svg {
-  color: v-bind(getColor(0));
+.check-box svg {
+  color: v-bind(color);
 }
-.check-box.ready:hover {
-  background: v-bind(getColor(0) + '30');
-}
-
-.check-box.doing svg {
-  color: v-bind(getColor(1));
-}
-.check-box.doing:hover {
-  background: v-bind(getColor(1) + '30');
-}
-
-.check-box.done svg {
-  color: v-bind(getColor(2));
-}
-.check-box.done:hover {
-  background: v-bind(getColor(2) + '30');
+.check-box:hover {
+  background: v-bind(color + '30');
 }
 </style>
