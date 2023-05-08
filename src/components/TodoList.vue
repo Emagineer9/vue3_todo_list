@@ -41,7 +41,7 @@ onBeforeMount(() => {
 
 /** イベント系 */
 let pressTimer: any = null
-const saveTask = (index: any) => {
+const switchingEditTask = (index: any) => {
   nextTick(() => {
     emit('startLoading')
     taskItems[index].isEdit = !taskItems[index].isEdit
@@ -51,7 +51,7 @@ const saveTask = (index: any) => {
 }
 const startPress = (index: any) => {
   pressTimer = setTimeout(() => {
-    saveTask(index)
+    switchingEditTask(index)
   }, 1000)
 }
 const endPress = () => {
@@ -196,6 +196,7 @@ const updateTaskItems = () => {
     <div>
       <TaskCard
         v-for="(taskItem, index) in taskItems"
+        @dblclick="switchingEditTask(index)"
         @pointerdown="startPress(index)"
         @pointerup="endPress"
         @pointermove="endPress"
@@ -259,7 +260,7 @@ const updateTaskItems = () => {
               :path="mdiContentSave"
               :size="34"
               type="mdi"
-              @click="saveTask(index)"
+              @click="switchingEditTask(index)"
             />
           </div>
         </template>

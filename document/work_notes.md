@@ -39,7 +39,7 @@ https://zenn.dev/junara/articles/467ec7922135b9
 npm install vue-multiselect@next
 https://github.com/shentao/vue-multiselect/tree/next
 
-## vue-cookie
+- vue-cookie
 https://www.npmjs.com/package/vue-cookies
 npm install vue-cookies --save
 
@@ -54,4 +54,4 @@ https://github.com/Emagineer9/vue3_todo_list
 2023/05/03 11:00～13:00
 2023/05/04 20:00～21:00
 2023/05/06 20:00～03:00
-2023/05/08 20:00～20:20
+2023/05/08 20:00～21:00

@@ -27,12 +27,22 @@
 <style scoped>
 .task-card {
   display: grid;
-  grid-template-columns: auto 100px;
-  padding: 20px 30px;
   border-bottom: solid;
   border-width: 1px;
   border-color: #cdc4b9;
 }
+@media (max-width: 1024px) {
+  .task-card {
+    padding: 20px 10px 10px 4px;
+  }
+}
+@media (min-width: 1024px) {
+  .task-card {
+    grid-template-columns: auto 100px;
+    padding: 20px 30px;
+  }
+}
+
 
 .task-card:last-child {
   border-bottom: none;
