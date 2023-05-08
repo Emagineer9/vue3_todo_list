@@ -27,13 +27,13 @@ let taskItems: TaskItemInterface[] = reactive([])
 onBeforeMount(() => {
   emit('startLoading')
   /** Cookieからデータ取得 */
-  tagOptions = $cookies?.get('tagOptions')
-  if (null === tagOptions || undefined === tagOptions) {
-    tagOptions = []
+  const cookieTagOptions = $cookies?.get('tagOptions')
+  if (null !== cookieTagOptions && undefined !== cookieTagOptions) {
+    tagOptions = cookieTagOptions
   }
-  taskItems = $cookies?.get('taskItems')
-  if (null === taskItems || undefined === taskItems) {
-    taskItems = []
+  const cookieTaskOptions = $cookies?.get('taskItems')
+  if (null !== cookieTaskOptions && undefined !== cookieTaskOptions) {
+    taskItems = cookieTaskOptions
   }
   resetOptions()
   emit('stopLoading')
