@@ -29,6 +29,9 @@ onBeforeMount(() => {
   /** Cookieからデータ取得 */
   tagOptions = $cookies?.get('tagOptions')
   taskItems = $cookies?.get('taskItems')
+  if (null === taskItems || undefined === taskItems) {
+    taskItems = []
+  }
   resetOptions()
   emit('stopLoading')
 })
@@ -150,15 +153,17 @@ const addTag = (index: any, value: TagItemInterface) => {
  */
 const resetOptions = () => {
   let taskTags: TagItemInterface[] = []
-  taskItems.forEach((task) => {
-    taskTags = taskTags.concat(task.tags)
-  })
-  console.log(taskItems)
-  const newVal: TagItemInterface[] = tagOptions.filter((tag: TagItemInterface) => {
-    return taskTags.find((option: TagItemInterface) => {
-      return option.name === tag.name && option.code === tag.code
+  let newVal: TagItemInterface[] = []
+  if (null !== taskItems && undefined !== taskItems) {
+    taskItems.forEach((task) => {
+      taskTags = taskTags.concat(task.tags)
     })
-  })
+    newVal = tagOptions.filter((tag: TagItemInterface) => {
+      return taskTags.find((option: TagItemInterface) => {
+        return option.name === tag.name && option.code === tag.code
+      })
+    })
+  }
   tagOptions = newVal
   $cookies?.set('tagOptions', tagOptions)
 }
