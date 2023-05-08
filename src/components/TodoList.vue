@@ -28,6 +28,9 @@ onBeforeMount(() => {
   emit('startLoading')
   /** Cookieからデータ取得 */
   tagOptions = $cookies?.get('tagOptions')
+  if (null === tagOptions || undefined === tagOptions) {
+    tagOptions = []
+  }
   taskItems = $cookies?.get('taskItems')
   if (null === taskItems || undefined === taskItems) {
     taskItems = []
